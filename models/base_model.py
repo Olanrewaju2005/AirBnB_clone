@@ -3,7 +3,7 @@
 import datetime
 import uuid
 
-def BaseModel:
+class BaseModel:
    
     def __init__(self, *args, **kwargs):
         """
@@ -27,12 +27,10 @@ def BaseModel:
                 if key == "__class__":
                     continue
                 elif key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(value, datetime_isoformat)
+                    setattr(self, key, datetime.strptime(value, datetime_isoformat))
                 else:
                     setattr(self, key, value)
         else:
-            self.name = name
-            self.my_number = int(my_number)
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
@@ -46,16 +44,17 @@ def BaseModel:
         Updates the public instance attribute update_at
         with the current datetime
         """
-        updated_at = datetime.date.time.now()
+        self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
         """
         Returns a dictionary containing key/value
         of __dict__ for an instance
         """
-        self.__dict__['__class__'] = self.__class__.__name__
-	self.__dict__['created_at'] = self.created_at.isoformat()
-        self.__dict__['updated_at'] = self.updated_at.isoformat()
-        return self.__dict__.items()
+        obj_dict = self.__dict__.copy()
 
+        obj_dict['__class__'] = self.__class__.__name__
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
+        return obj_dict
 
