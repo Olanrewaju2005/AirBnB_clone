@@ -3,6 +3,7 @@
 import datetime
 import uuid
 
+
 class BaseModel:
     def __init__(self, *args, **kwargs):
         """
@@ -26,7 +27,11 @@ class BaseModel:
                 if key == "__class__":
                     continue
                 elif key in {"created_at", "updated_at"}:
-                    setattr(self, key, datetime.datetime.strptime(value, datetime_isoformat))
+                    setattr(
+                        self,
+                        key,
+                        datetime.datetime.strptime(value, datetime_isoformat)
+                    )
                 else:
                     setattr(self, key, value)
         else:
@@ -56,4 +61,3 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
-
