@@ -8,33 +8,25 @@ import uuid
 
 
 class BaseModel:
-	"""Class for Base Model"""
-	
-	def __init__(self, *args, **kwargs):
+    """Class for Base Model"""
+
+    def __init__(self, *args, **kwargs):
         """
         Initializes a new instance of BaseModel.
 
         Args:
             *args: Unused positional arguments
             **kwargs: Dictionary representation of an instance.
-
-        If kwargs is not empty:
-            Each key has an attribute name
-            Each value is the value of the corresponding attribute name
-            Convert datetime to datetime objects
-
-        Otherwise:
-            Create id, created_at, and updated_at values as initially done
         """
         datetime_isoformat = "%Y-%m-%dT%H:%M:%S.%f"
-	if kwargs is not None and kwargs != {}:
+        if kwargs is not None and kwargs != {}:
             for key in kwargs:
                 if key == "created_at":
-                    self.__dict__["created_at"] = datetime.strptime(
+                    self.__dict__["created_at"] = datetime.datetime.strptime(
                         kwargs["created_at"], datetime_isoformat
                     )
                 elif key == "updated_at":
-                    self.__dict__["updated_at"] = datetime.strptime(
+                    self.__dict__["updated_at"] = datetime.datetime.strptime(
                         kwargs["updated_at"], datetime_isoformat
                     )
                 else:
