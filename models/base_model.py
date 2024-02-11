@@ -4,10 +4,9 @@ import datetime
 import uuid
 
 class BaseModel:
-   
     def __init__(self, *args, **kwargs):
         """
-        Initialiazes new instance of BaseModel.
+        Initializes a new instance of BaseModel.
 
         Args:
             *args: Unused positional arguments
@@ -15,19 +14,19 @@ class BaseModel:
 
         If kwargs is not empty:
             Each key has an attribute name
-            Each value is the value of the corresponding attr name
+            Each value is the value of the corresponding attribute name
             Convert datetime to datetime objects
 
         Otherwise:
-            Create id and created_at values as initially done
+            Create id, created_at, and updated_at values as initially done
         """
         datetime_isoformat = "%Y-%m-%dT%H:%M:%S.%"
         if kwargs:
-            for key, value in kwargs:
+            for key, value in kwargs.items():
                 if key == "__class__":
                     continue
-                elif key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(value, datetime_isoformat))
+                elif key in {"created_at", "updated_at"}:
+                    setattr(self, key, datetime.datetime.strptime(value, datetime_isoformat))
                 else:
                     setattr(self, key, value)
         else:
@@ -41,7 +40,7 @@ class BaseModel:
 
     def save(self):
         """
-        Updates the public instance attribute update_at
+        Updates the public instance attribute updated_at
         with the current datetime
         """
         self.updated_at = datetime.datetime.now()
