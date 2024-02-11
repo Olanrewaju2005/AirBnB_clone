@@ -1,11 +1,16 @@
 #!/usr/bin/python3
-
+"""
+Module for Base class
+Parent class for the airBnb clone project.
+"""
 import datetime
 import uuid
 
 
 class BaseModel:
-    def __init__(self, *args, **kwargs):
+	"""Class for Base Model"""
+	
+	def __init__(self, *args, **kwargs):
         """
         Initializes a new instance of BaseModel.
 
