@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from your_module import BaseModel  # Replace 'your_module' with the actual module name where BaseModel is defined
+from base_model import BaseModel  # Replace 'your_module' with the actual module name where BaseModel is defined
 import datetime
 
 class TestBaseModel(unittest.TestCase):

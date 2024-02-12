@@ -5,6 +5,7 @@ Parent class for the airBnb clone project.
 """
 import datetime
 import uuid
+from __init__ import storage
 
 
 class BaseModel:
@@ -36,6 +37,8 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
 
+            storage.new()
+
     def __str__(self):
         """Returns a string representation of the object class"""
         return f"[{self.__class__.__name__}]({self.id}){self.__dict__}"
@@ -46,6 +49,7 @@ class BaseModel:
         with the current datetime
         """
         self.updated_at = datetime.datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
