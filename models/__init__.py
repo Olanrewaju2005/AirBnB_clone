@@ -1,10 +1,4 @@
-#!/usr/bin/python3
-
-import sys
-
-sys.path.append('models/engine/file_storage.py')
-
-import file_storage
+from models.engine.file_storage import FileStorage
 
 storage = FileStorage()
 storage.reload()

@@ -22,7 +22,7 @@ class FileStorage:
         sets in __objects the obj with key <obj class name>.id
         """
         obj_clsname = obj.__class__.__name__
-	key = "{}.{}".format(obj_clsname, obj.id)
+        key = "{}.{}".format(obj_clsname, obj.id)
         self.__objects[key] = obj
 
     def all(self):
@@ -48,8 +48,8 @@ class FileStorage:
         """
         deserializes the JSON file to __objects (only if the JSON file (__file_path) exists
         """
-        if os.path.isFile(self.__filepath)
-            with open(self.__filepath, "r", encoding="utf-8") as f:
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, "r", encoding="utf-8") as f:
                 try:
                     obj_dict = json.load(f)
 
