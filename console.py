@@ -4,7 +4,18 @@
 Imports the cmd module to handle command line
 arguments
 """
+import sys
+sys.path.append('models/__init__.py')
 import cmd
+import shlex
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -95,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances based or not on the class name
         """
         objects = storage.all()
-	args = shlex.split(arg)
+        args = shlex.split(arg)
 
         if len(args) == 0:
             for key, value in objects.items():
@@ -111,7 +122,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name and id by adding or updating attribute
         """
-	args = shlex.split(arg)
+        args = shlex.split(arg)
 
         if len(args) == 0:
             print("** class name missing **")
