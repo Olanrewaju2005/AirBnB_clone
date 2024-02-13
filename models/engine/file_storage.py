@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+json os and local modules are imported
+"""
 import json
 import os
 from models.base_model import BaseModel
